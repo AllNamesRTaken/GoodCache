@@ -1,26 +1,27 @@
-# GoodCore
-Good Core typescript library with utility functions and effective data structures for use with in Node and browser.
+# GoodCache
+A fifo based cache for Node and browser, uses the GoodCore library.
 
-It contains ...
+# Usage
+Install from npm.
 
-the following data structures:
-- List<T>
-- Dictionary<T>
-- Stack<T>
-- Tree<T>
-- Vec2
-- Range2
-- Rect
+Simple example
 
-as well as:
-- Pool<T>
-- Cache<T>
+    const fifo = new Cache<string>();
+    fifo.push("in fifo", "data");
+    fifo.hit("in fifo");
 
-and lots of utility functions for:
-- Array manipulation
-- Dom manipulation
-- Moc data generation
-- Object manipulation
-- Timer
-- Uri location handling
-- Helper functions for Asserts, Function proxies, Log pipe, Guid generation and MD5 hash (using ts-md5)
+Simple caching of a class function
+
+    const test = new TestClass();
+    fifo.cache(test, "TestFn");
+    test.TestFn("test"); // returns some value
+    test.TestFn("test"); // returns cached value
+
+Advanced caching of a class function
+
+    const test = new TestClass();
+    fifo.cache(test, "TestFn", (...args) => { return "some key string depending on the args"; } );
+    test.TestFn("test"); // returns some value
+    test.TestFn("test"); // returns cached value if the key function returns the same
+
+For more look at the tests.
