@@ -1,0 +1,8 @@
+dist/
+node_modules/
+temp/
+coverage/
+typings/globals/
+typings/modules/
+typings/index.d.ts
+npm-debug.log
