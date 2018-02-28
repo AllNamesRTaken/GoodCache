@@ -1,6 +1,6 @@
 {
   "name": "goodcache",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple fifo cache",
   "main": "goodcache.es5.umd.min.js",
   "module": "index.js",
