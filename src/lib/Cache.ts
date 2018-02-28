@@ -2,8 +2,8 @@ import { Arr, Dictionary, Initable, List, Obj, Util } from "goodcore";
 import { Md5 } from "ts-md5/dist/md5";
 
 export class CacheObject<T> implements IInitable<CacheObject<T>> {
-	public Key: string = null;
-	public Data: T = null;
+	public Key: string|null = null;
+	public Data: T|null = null;
 
 	public init(obj: Object): any {
 		Obj.setProperties(this, obj);
@@ -42,17 +42,17 @@ export class Cache<T> {
 	public hit(key: string): boolean {
 		return this._data.has(key);
 	}
-	public get(key: string): T {
-		let result: T;
-		result = this.hit(key) ? this._data.get(key).Data : null;
+	public get(key: string): T | null {
+		let result: T|null;
+		result = this.hit(key) ? this._data.get(key)!.Data : null;
 		return result;
 	}
 	public push(key: string, data: T) {
 		this.add(key, data);
 	}
-	public getStaged(key: string): T {
-		let result: T;
-		result = this._stage.has(key) ? this._stage.get(key).Data : null;
+	public getStaged(key: string): T | null {
+		let result: T|null;
+		result = this._stage.has(key) ? this._stage.get(key)!.Data : null;
 		return result;
 	}
 	public stage(key: string, data: T) {
@@ -60,7 +60,7 @@ export class Cache<T> {
 	}
 	public publish(key: string) {
 		if (this._stage.has(key)) {
-			this.add(key, this._stage.get(key).Data);
+			this.add(key, this._stage.get(key)!.Data!);
 			this._stage.delete(key);
 		}
 
@@ -75,11 +75,11 @@ export class Cache<T> {
 	public cache(obj: Object, fnName: string, keyFn?: (...args: any[]) => string): void {
 		if (keyFn === undefined) {
 			keyFn = function(...args: any[]): string {
-				return Md5.hashStr(Arr.reduce(args, (acc: string, cur: any) => acc += JSON.stringify(cur))) as string;
+				return Md5.hashStr(Arr.reduce(args, (acc: string, cur: any) => acc += JSON.stringify(cur), "")) as string;
 			};
 		}
 		const proxyFn = (superFn: Function, ...args: any[]) => {
-			const key = keyFn(...args);
+			const key = keyFn!(...args);
 			if (key !== null && this.hit(key)) {
 				return this.get(key);
 			}
@@ -90,7 +90,7 @@ export class Cache<T> {
 			return result;
 		};
 
-		Util.proxyFn(obj as any, fnName, proxyFn, false);
+		Util.proxyFn(obj as any, fnName, proxyFn);
 	}
 	public clear() {
 		this._data.clear();
@@ -110,7 +110,7 @@ export class Cache<T> {
 
 	private trim() {
 		while ((this._order.count > this._size)) {
-			this._data.delete(this._order.get(0));
+			this._data.delete(this._order.get(0)!);
 			this._order.shift();
 		}
 	}

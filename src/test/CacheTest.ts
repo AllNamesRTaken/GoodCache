@@ -35,7 +35,7 @@ describe("Cache",
 			function(){
 				const fifo = new Cache<string>(2);
 				fifo.push("1", "data1");
-				fifo.get("1").should.equal("data1");
+				fifo.get("1")!.should.equal("data1");
 				(fifo.get("2") === null).should.be.true;
 			});
 		it("Count and StageCount returns correct values",

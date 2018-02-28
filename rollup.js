@@ -55,11 +55,14 @@ rollup.rollup({
             typescript: require('typescript')
         }),
         resolve({ module: true, jsnext: true, main: true, modulesOnly: false }),
-        commonjs()
+        commonjs(),
+        babili({
+            sourceMap: true
+        })
     ]
 }).then(function (bundle) {
     bundle.write({
         format: 'es',
-        dest: 'dist/' + packageJson.name + '.es2015.js'
+        dest: 'dist/' + packageJson.name + '.es2015.min.js'
     });
 });
