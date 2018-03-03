@@ -92,7 +92,7 @@ describe("Cache",
 			function(){
 				const fifo = new Cache<string>(10);
 				fifo.stage("1", "data1");
-				fifo.getStaged("1").should.equal("data1");
+				fifo.getStaged("1")!.should.equal("data1");
 			});
 		it("Remove removes one value from the cache",
 			function(){
