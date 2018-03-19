@@ -34,7 +34,7 @@ export class Cache<T> {
 		return this._order.count;
 	}
 	public get stageCount(): number {
-		return this._stage.list.count;
+		return this._stage.count;
 	}
 	public constructor(size: number = CacheConst.DEFAULT_FIFO_SIZE) {
 		this._size = size;
