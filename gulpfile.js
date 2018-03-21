@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var debug = require("gulp-debug");
 var sequence = require("gulp-sequence");
+var replace = require('gulp-replace');
 var fs = require("fs");
 var chalk = require("chalk");
 
@@ -27,6 +28,10 @@ gulp.task("package", ["bump"], function() {
 });
 gulp.task("copyDTS", () => {
     return gulp.src("./dts/**/*.d.ts")
+        .pipe(gulp.dest("dist/lib"));
+});
+gulp.task("copyWebpackExternalsFn", () => {
+    return gulp.src("./src/lib/webpackExternals.js")
         .pipe(gulp.dest("dist/lib"));
 });
 //This should build both but when I sequence them then they leek code into each other.

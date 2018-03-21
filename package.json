@@ -1,10 +1,10 @@
 {
   "name": "goodcache",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple fifo cache",
   "main": "goodcache.bundle.js",
   "module": "index.js",
-  "typings": "goodcache.d.ts",
+  "typings": "library.d.ts",
   "unpkg": "goodcache.bundle.js",
   "files": [
     "*"
@@ -16,8 +16,8 @@
   "scripts": {
     "install_tools": "npm install && typings install",
     "clean": "rimraf ./dist",
-    "dev": "npm run clean && tsc -p tsconfig.app.json && webpack --env.MODE=development && gulp modifyBundle && gulp copyDTS",
-    "build": "npm run clean && tsc -p tsconfig.app.json && webpack --env.MODE=production && gulp modifyBundle && gulp copyDTS",
+    "dev": "npm run clean && tsc -p tsconfig.app.json && webpack --env.MODE=development && gulp modifyBundle && gulp copyDTS && gulp copyWebpackExternalsFn",
+    "build": "npm run clean && tsc -p tsconfig.app.json && webpack --env.MODE=production && gulp modifyBundle && gulp copyDTS && gulp copyWebpackExternalsFn",
     "test": "npm run clean && tsc -p tsconfig.test.json && npm run run_test",
     "testcoverage": "npm run clean && tsc -p tsconfig-test.json && npm run coveralls",
     "run_test": "mocha -r @std/esm ./dist/test/*Test.js",
@@ -26,7 +26,6 @@
     "deploy": "gulp package && npm publish dist/lib"
   },
   "dependencies": {
-    "goodcore": "^0.17.7",
     "ts-md5": "^1.2.4"
   },
   "devDependencies": {
@@ -41,8 +40,10 @@
     "chalk": "^2.1.0",
     "coveralls": "^2.13.1",
     "fork-ts-checker-webpack-plugin": "^0.4.1",
+    "goodcore": "^0.17.13",
     "gulp": "^3.9.1",
     "gulp-debug": "^3.1.0",
+    "gulp-replace": "^0.6.1",
     "gulp-sequence": "^0.4.6",
     "happypack": "^5.0.0-beta.1",
     "ieee754": "^1.1.9",

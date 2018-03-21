@@ -1,8 +1,8 @@
 const webpack = require("webpack");
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
-const webpackRxjsExternals = require('webpack-rxjs-externals');
-// const webpackGoodcoreExternals = require('goodcore/webpackExternals');
+// const webpackRxjsExternals = require('webpack-rxjs-externals');
+const webpackGoodcoreExternals = require('goodcore/webpackExternals');
 const HappyPack = require('happypack');
 const path = require("path");
 const chalk = require("chalk");
@@ -31,8 +31,8 @@ module.exports = (envOptions) => {
         target: "web",
         entry: libEntries,
         externals: [
-            webpackRxjsExternals(),
-            // webpackGoodcoreExternals(),
+            // webpackRxjsExternals(),
+            webpackGoodcoreExternals(),
             // other externals here
         ],
         // context: source,
