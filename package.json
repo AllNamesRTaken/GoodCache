@@ -1,6 +1,6 @@
 {
   "name": "goodcache",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Simple fifo cache",
   "main": "goodcache.bundle.js",
   "module": "index.js",
