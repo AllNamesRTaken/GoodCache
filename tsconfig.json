@@ -4,7 +4,7 @@
 		"outDir": "./dist",
 	    "sourceMap": true,
 	    "target": "es5",
-	    "module": "es2015",
+	    "module": "CommonJS",
 	    "moduleResolution": "node",
 	    "declaration": false,
 	    "noImplicitAny": true,
@@ -31,7 +31,7 @@
 		"./src/**/*.ts",
 		"./src/test/**/*.ts",
 		"./typings/**/*.d.ts"
-	],
+, "src/lab.ts"	],
 	"exclude": [
 	]
 }
