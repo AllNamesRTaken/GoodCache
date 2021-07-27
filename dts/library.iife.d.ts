@@ -1,5 +1,6 @@
 export namespace goodcache {
     export class Cache<T> {
+        public constructor(size?: number)
         public size: number;
         public count: number;
         public hit(key: string): boolean;

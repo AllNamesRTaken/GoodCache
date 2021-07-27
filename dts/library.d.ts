@@ -1,4 +1,5 @@
 export class Cache<T> {
+	public constructor(size?: number)
 	public size: number;
 	public count: number;
 	public hit(key: string): boolean;
@@ -9,5 +10,5 @@ export class Cache<T> {
 	public publish(key: string): void;
 	public remove(key: string):void;
 	public cache(obj: Object, fnName: string, keyFn?: (...args: any[]) => string): void
-    public clear(): void;
+	public clear(): void;
 }
